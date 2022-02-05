@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        button{
+            display: block;
+        }
+        body{
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+        li{
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .fav{
+            background: #ff9ed2;
+            color: #eeeeee;
+        }
+        .block{
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="app">
+<!--        mouse events-->
+        <div class="block" @mouseover="handleEvent">mouseover(enter)</div>
+        <div class="block" @mouseleave="handleEvent">mouseleave</div>
+        <div class="block" @dblclick="handleEvent">double click</div>
+        <div class="block" @mousemove="handleMousemove">position -  {{ x }} {{ y }}</div>
+
+        <a :href="url">Me in the Instagram</a>
+        <div v-if="showBooks">
+            <ul>
+                <li v-for="book in filteredBooks" :class="{ fav: book.isFav}" @click="toggleColor(book)">
+                    <img :src="book.img" :alt="book.title">
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.author }}</p>
+                </li>
+            </ul>
+        </div>
+        <button @click="toggleShowBooks">
+            <span v-if="showBooks">hide</span>
+            <span v-else>show</span>
+        </button>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
